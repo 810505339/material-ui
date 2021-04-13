@@ -6,7 +6,12 @@ const instance = axios.create({
     timeout: 6000,
 });
 
-const fetcher = (url: string) => instance.get(url).then(res => res.data)
+interface IFetcher {
+
+}
+
+
+const fetcher = <T>(url: string) => instance.get<T>(url).then(res => res.data)
 
 export {
     fetcher

@@ -10,14 +10,17 @@ import "swiper/swiper-bundle.css";
 import {Theme, useMediaQuery} from "@material-ui/core";
 import {Swiper, SwiperSlide} from "swiper/react";
 import React, {FC} from "react";
+import Image from 'material-ui-image'
+import useSWR from "swr";
+import {fetcher} from "@/api/server";
 
 
-interface banner {
+export interface banner {
     imageUrl: string
 }
 
 export interface IMusicSwiper {
-    banners: banner[],
+    banners: banner[] | undefined,
     params?: SwiperOptions
 }
 
@@ -46,7 +49,7 @@ const MusicSwiper: FC<IMusicSwiper> = ({banners, params: SwiperOptions}) => {
         <Swiper {...params}>
             {banners?.map((item, index) => (
                 <SwiperSlide key={index}>
-                    <img src={item.imageUrl} width={'100%'} height={'100%'} alt={''}/>
+                    <Image aspectRatio={2} src={item.imageUrl} height={`100%`} width={`100%`} alt={''}/>
                 </SwiperSlide>
             ))}
         </Swiper>
